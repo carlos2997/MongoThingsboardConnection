@@ -1,0 +1,11 @@
+com\mycompany\entities\GeoSpatial\Point.class
+com\mycompany\mongodb\ServerProperties.class
+com\mycompany\connection\MongoConnection.class
+com\mycompany\connection\MongoDBSpatial.class
+com\mycompany\connection\MongoDBException.class
+com\mycompany\mongodb\Application.class
+com\mycompany\connection\SpatialIndexes.class
+com\mycompany\entities\SpatialCrop.class
+com\mycompany\entities\SpatialFarm.class
+com\mycompany\entities\SpatialDevice.class
+com\mycompany\entities\GeoSpatial\Polygon.class

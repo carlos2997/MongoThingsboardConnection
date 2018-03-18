@@ -1,0 +1,70 @@
+logging:
+  level:
+    .: error
+    org.springframework: ERROR
+    com.mkyong: ERROR
+
+spring:
+  profiles:
+    active: "devHouse"
+  main:
+    banner-mode: "off"
+
+server:
+  email: default@mkyong.com
+  
+---
+
+spring:
+  profiles: devHouse
+server:
+  mongoURI: mongodb://192.168.0.12:27017
+  mongoDB: prueba
+  farmDB: farmTest
+  cropDB: cropTest
+  deviceDB: deviceTest
+
+---
+
+spring:
+  profiles: dev
+server:
+  mongoURI: mongodb://10.8.0.23:27017
+  mongoDB: test
+  farmDB: farmTest
+  cropDB: cropTest
+  deviceDB: deviceTest
+  
+---
+
+spring:
+  profiles: devOnPremise
+server:
+  mongoURI: mongodb://10.2.0.162:27017
+  mongoDB: test
+  farmDB: farmTest
+  cropDB: cropTest
+  deviceDB: deviceTest
+
+---
+
+spring:
+  profiles: prod
+server:
+  mongoURI: mongodb://10.8.0.23:27017
+  mongoDB: production
+  farmDB: Farm
+  cropDB: Crops
+  deviceDB: Devices
+
+---
+
+
+spring:
+  profiles: prodOnPremise
+server:
+  mongoURI: mongodb://10.2.0.162:27017
+  mongoDB: production
+  farmDB: Farm
+  cropDB: Crops
+  deviceDB: Devices
