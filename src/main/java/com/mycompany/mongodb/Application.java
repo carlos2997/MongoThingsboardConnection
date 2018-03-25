@@ -50,12 +50,17 @@ public class Application implements CommandLineRunner {
         coor5.add(4.784640029781744);
           
             
-        List<List<Double>> lin = new LinkedList<>();
-        lin.add(coor1);
-        lin.add(coor2);
-        lin.add(coor3);
-        lin.add(coor4);
-        lin.add(coor5);
+        List<List<Double>> lin12 = new LinkedList<>();
+        List<List<List<Double>>> lin = new LinkedList<>();
+        
+        lin.add(lin12);
+        
+        
+        lin.get(0).add(coor1);
+        lin.get(0).add(coor2);
+        lin.get(0).add(coor3);
+        lin.get(0).add(coor4);
+        lin.get(0).add(coor5);
         
         Polygon pFinca1 = new Polygon(lin,"Polygon");
         
@@ -83,13 +88,16 @@ public class Application implements CommandLineRunner {
         coorFin5.add(-74.04621809720993);
         coorFin5.add(4.7833196345800735);
           
-            
-        List<List<Double>> linCrop1 = new LinkedList<>();
-        linCrop1.add(coorFin1);
-        linCrop1.add(coorFin2);
-        linCrop1.add(coorFin3);
-        linCrop1.add(coorFin4);
-        linCrop1.add(coorFin5);
+        List<List<Double>> linCrop11 = new LinkedList<>();
+        List<List<List<Double>>> linCrop1 = new LinkedList<>();
+        
+        linCrop1.add(linCrop11);    
+        
+        linCrop1.get(0).add(coorFin1);
+        linCrop1.get(0).add(coorFin2);
+        linCrop1.get(0).add(coorFin3);
+        linCrop1.get(0).add(coorFin4);
+        linCrop1.get(0).add(coorFin5);
         Polygon pCrop1 = new Polygon(linCrop1,"Polygon");
 
         SpatialCrop sc1 = new SpatialCrop("QWE-QW-121", "ACD-12-SD1", pCrop1);
@@ -117,12 +125,17 @@ public class Application implements CommandLineRunner {
         coorFin25.add(4.783381110526558);
           
             
-        List<List<Double>> linCrop12 = new LinkedList<>();
-        linCrop12.add(coorFin21);
-        linCrop12.add(coorFin22);
-        linCrop12.add(coorFin23);
-        linCrop12.add(coorFin24);
-        linCrop12.add(coorFin25);
+        List<List<Double>> linCrop121 = new LinkedList<>();
+        List<List<List<Double>>> linCrop12 = new LinkedList<>();
+        
+        linCrop12.add(linCrop121);
+        
+        
+        linCrop12.get(0).add(coorFin21);
+        linCrop12.get(0).add(coorFin22);
+        linCrop12.get(0).add(coorFin23);
+        linCrop12.get(0).add(coorFin24);
+        linCrop12.get(0).add(coorFin25);
         Polygon pCrop2 = new Polygon(linCrop12,"Polygon");
 
         SpatialCrop sc2 = new SpatialCrop("MNB-LKJ-987", "ACD-12-SD1", pCrop2);
