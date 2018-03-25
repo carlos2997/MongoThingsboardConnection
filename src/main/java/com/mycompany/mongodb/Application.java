@@ -1,6 +1,7 @@
 package com.mycompany.mongodb;
 
 import com.mycompany.connection.MongoDBSpatial;
+import com.mycompany.entities.SparkDevice;
 
 import com.mycompany.entities.SpatialCrop;
 import com.mycompany.entities.SpatialDevice;
@@ -15,6 +16,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//db.SparkDevice.drop();db.Devices.drop();db.Farms.drop();db.Crops.drop();
+
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
@@ -25,7 +28,7 @@ public class Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println(serverProperties);
         MongoDBSpatial mdbs = new MongoDBSpatial();
-        
+
         List<Double> coor1 = new ArrayList<>();
         coor1.add(-74.0464997291565);
         coor1.add(4.784640029781744);
@@ -184,6 +187,23 @@ public class Application implements CommandLineRunner {
         System.out.println("este es crop: " + mdbs.findCropsByDeviceId("236b9de0-2737-11e8-80d2-dbc409f2ab03").toString());
         System.out.println("este es farm: " + mdbs.findFarmsByDeviceId("adb41540-2b92-11e8-b840-dbc409f2ab03").toString());
 
+        SparkDevice sd1 = new SparkDevice("XazvDpAr066FWtyvgeM4","QWE-QW-121","temperature");
+        SparkDevice sd2 = new SparkDevice("hxFLwt6Sb7Gp9EIAXaES","MNB-LKJ-987","temperature");
+        SparkDevice sd3 = new SparkDevice("29qr3bzaiChBTP7wZ6nf","QWE-QW-121","windSpeed");
+        SparkDevice sd4 = new SparkDevice("npF491Xh1BH8Gn9dhkdT","MNB-LKJ-987","windSpeed");
+        SparkDevice sd5 = new SparkDevice("xtY5ao6MTDQshFsTW2wu","QWE-QW-121","windSpeedVsTemperature");
+        SparkDevice sd6 = new SparkDevice("gyOsudGZITe8UOhKG6qd","MNB-LKJ-987","windSpeedVsTemperature");
+        
+        mdbs.getMongodbspark().save(sd1);
+        mdbs.getMongodbspark().save(sd2);
+        mdbs.getMongodbspark().save(sd3);
+        mdbs.getMongodbspark().save(sd4);
+        mdbs.getMongodbspark().save(sd5);
+        mdbs.getMongodbspark().save(sd6);
+        
+        System.out.println("El token que debe ser a partir de idCrop y Topic es: "+mdbs.getTokenByIdCropTopic("QWE-QW-121", "windSpeedVsTemperature"));
+        System.out.println("El token que debe ser a partir de idCrop y Topic es: "+mdbs.getTokenByIdCropTopic("MNB-LKJ-987", "temperature"));
+        System.out.println("El token que debe ser a partir de idCrop y Topic es: "+mdbs.getTokenByIdCropTopic("MNB-LKJ-9878", "temperature"));
     }
 
     public static void main(String[] args) throws Exception {

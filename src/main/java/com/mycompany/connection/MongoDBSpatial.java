@@ -5,9 +5,14 @@
  */
 package com.mycompany.connection;
 
+import com.mongodb.Block;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
 import com.mycompany.connection.dao.SpatialFarm.MongoDBSpatialCrop;
 import com.mycompany.connection.dao.SpatialFarm.MongoDBSpatialDevice;
 import com.mycompany.connection.dao.SpatialFarm.MongoDBSpatialFarm;
+import com.mycompany.connection.dao.SpatialFarm.MongoDBSpatialSpark;
+import com.mycompany.entities.SparkDevice;
 import com.mycompany.entities.SpatialCrop;
 import com.mycompany.entities.SpatialDevice;
 import com.mycompany.entities.SpatialFarm;
@@ -21,11 +26,13 @@ public class MongoDBSpatial extends MongoConnection implements SpatialIndexes {
     private final MongoDBSpatialCrop mongodbcrop;
     private final MongoDBSpatialFarm mongodbFarm;
     private final MongoDBSpatialDevice mongodbDevice;
+    private final MongoDBSpatialSpark mongodbspark;
 
     public MongoDBSpatial() {
         mongodbcrop = new MongoDBSpatialCrop();
         mongodbFarm = new MongoDBSpatialFarm();
         mongodbDevice = new MongoDBSpatialDevice();
+        mongodbspark = new MongoDBSpatialSpark();
     }
 
     public MongoDBSpatialCrop getMongodbcrop() {
@@ -38,6 +45,10 @@ public class MongoDBSpatial extends MongoConnection implements SpatialIndexes {
 
     public MongoDBSpatialDevice getMongodbDevice() {
         return mongodbDevice;
+    }
+
+    public MongoDBSpatialSpark getMongodbspark() {
+        return mongodbspark;
     }
 
     @Override
@@ -64,6 +75,15 @@ public class MongoDBSpatial extends MongoConnection implements SpatialIndexes {
     @Override
     public SpatialDevice getCoordenatesByDeviceId(String device_id) throws MongoDBException {
         return mongodbDevice.findById(device_id);
+    }
+
+    @Override
+    public String getTokenByIdCropTopic(String idCrop, String topic) throws MongoDBException {
+        StringBuilder token = new StringBuilder();
+        mongodbspark.getCollectionDependClass().find(and(eq("idCrop",idCrop),eq("topic",topic))).forEach((Block<SparkDevice>) sparkDevice -> {
+            token.append(sparkDevice.getId());
+        });
+        return token.toString();
     }
 
 }

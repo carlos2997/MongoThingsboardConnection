@@ -41,7 +41,7 @@ public abstract class MongoConnection {
     public MongoClient getSession() {
         if (mongoClient == null) {
             //mongoClient = new MongoClient(new MongoClientURI(serverProperties.getMongoURI()));
-            mongoClient = new MongoClient(new MongoClientURI("mongodb://192.168.0.10:27017"));
+            mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
         }
         return mongoClient;
     }
@@ -51,7 +51,7 @@ public abstract class MongoConnection {
             CodecRegistry pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
                     fromProviders(PojoCodecProvider.builder().automatic(true).build()));
             //mongoDatabase = getSession().getDatabase(serverProperties.getMongoDB());
-            mongoDatabase = getSession().getDatabase("prueba").withCodecRegistry(pojoCodecRegistry);
+            mongoDatabase = getSession().getDatabase("miprueba").withCodecRegistry(pojoCodecRegistry);
         }
         return mongoDatabase;
     }

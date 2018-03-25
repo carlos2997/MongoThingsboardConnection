@@ -20,4 +20,6 @@ public interface SpatialIndexes {
     public SpatialCrop findCropsByDeviceId(String device_id) throws MongoDBException;
     
     public SpatialDevice getCoordenatesByDeviceId(String device_id) throws MongoDBException;
+    
+    public String getTokenByIdCropTopic(String idCrop,String token) throws MongoDBException;
 }
